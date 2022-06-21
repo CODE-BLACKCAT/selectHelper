@@ -51,7 +51,7 @@ void readFile(std::ifstream& is, std::vector<Question>& vec) {
 	std::string str;
 	is.open("data.txt", std::ios::in);
 	int i = 0;
-	while (is >> str)
+	while (getline(is, str))
 	{
 		switch (i)
 		{
