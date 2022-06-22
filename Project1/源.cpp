@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 #include <conio.h>
+#include <Windows.h>
 
 // 题目的数据结构
 struct Question
@@ -141,9 +142,9 @@ void suffle(std::vector<Question>& vec) {
 
 void menu() {
 	std::cout << "------------------------------------------------------------------" << std::endl;
-	std::cout << "                   1 刷题                                         " << std::endl;
+	std::cout << "                   1 随机刷题                                     " << std::endl;
 	std::cout << "                   2 刷错题（需要先刷一遍题）                     " << std::endl;
-	std::cout << "                   3 没想好                                       " << std::endl;
+	std::cout << "                   3 顺序刷题                                     " << std::endl;
 	std::cout << "------------------------------------------------------------------" << std::endl;
 }
 
@@ -158,6 +159,9 @@ void checkBadQuestion(std::vector<Question>& vec) {
 
 int main()
 {
+	SetConsoleTitle(L"刷题助手");
+	system("mode con cols=68 lines=20");
+
 	std::ofstream os;
 	std::ifstream is;
 	std::vector<Question> vec;
@@ -176,6 +180,7 @@ int main()
 		switch (key) {
 		case 1: suffle(vec);  training(vec, badVec); break;
 		case 2: checkBadQuestion(badVec); break;
+		case 3: training(vec, badVec); break;
 		default:
 			std::cout << "都说了没想好" << std::endl;
 			break;
